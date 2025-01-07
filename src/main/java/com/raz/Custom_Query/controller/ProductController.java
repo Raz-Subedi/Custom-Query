@@ -1,5 +1,6 @@
 package com.raz.Custom_Query.controller;
 
+
 import com.raz.Custom_Query.model.Product;
 import com.raz.Custom_Query.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,27 +11,37 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{name}")
-    public Product getProductByName(@PathVariable String name){
+    public Product getProductByName(@PathVariable String name) {
         return productService.getProductByName(name);
     }
 
-    @PutMapping("/{id}/price")
-    public String updateProductPrice(@PathVariable Long id, @RequestParam Double  price){
-        productService.updateProductPrice(id, price);
-        return "Price updated Successfully!";
+    @PutMapping("/{id}")
+    public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String price, @RequestParam String description) {
+        productService.updateProductDetails(id, name, price, description);
+        return "Product updated successfully!";
     }
+
+
     @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable Long id){
+    public String deleteById(@PathVariable Long id) {
         productService.deleteProductById(id);
-        return "Product Deleted Successfully!";
+        return "Product deleted successfully!";
+    }
+
+    @PostMapping
+    public String addProduct(@RequestBody Product product) {
+        productService.addProduct(product);
+        return "Product added successfully!";
     }
 }
+

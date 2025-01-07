@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class ProductService {
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -22,12 +23,18 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProductPrice(Long id, Double price) {
-        productRepository.updatePrice(id, price);
+    public void updateProductDetails(Long id, String name, String price, String description) {
+        productRepository.updateProductDetails(id, name, price, description);
     }
+
 
     @Transactional
     public void deleteProductById(Long id) {
         productRepository.deleteByIdCustom(id);
+    }
+
+    @Transactional
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
     }
 }
