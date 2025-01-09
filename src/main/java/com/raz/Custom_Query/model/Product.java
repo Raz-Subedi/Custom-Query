@@ -20,4 +20,9 @@ public class Product {
     private String price;
     private String description;
 
+    @Override
+    public String toString() {
+        return "Product{id=" + id + ", name='" + name + "', price=" + price + "}";
+    }
+
 }

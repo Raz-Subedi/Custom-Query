@@ -16,11 +16,19 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
-        return productRepository.findAllProducts();
+        List<Product> allProducts = productRepository.getProducts();
+        allProducts.forEach(e -> {
+            System.out.println(e);
+        });
+        return allProducts;
     }
 
-    public Product getProductByName(String name) {
-        return productRepository.findByName(name);
+    public List<Product> getProductByName(String name) {
+        List<Product> byName = productRepository.findByName(name);
+        byName.forEach(e -> {
+            System.out.println(e);
+        });
+        return byName;
     }
 
     @Transactional

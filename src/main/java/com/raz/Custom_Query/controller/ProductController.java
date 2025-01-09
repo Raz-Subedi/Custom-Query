@@ -21,10 +21,10 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-//    @GetMapping("/{name}")
-//    public Product getProductByName(@PathVariable String name) {
-//        return productService.getProductByName(name);
-//    }
+    @GetMapping("/{name}")
+    public List<Product> getProductByName(@PathVariable String name) {
+        return productService.getProductByName(name);
+    }
 
     @PutMapping("/{id}")
     public String updateProduct(@PathVariable Long id, @RequestParam String name, @RequestParam String price, @RequestParam String description) {
@@ -45,9 +45,9 @@ public class ProductController {
         return "Product added successfully!";
     }
 
-    @GetMapping("/{id}")
-    public Optional<Product> findById(@PathVariable Long id) {
-        return productService.findById(id);
-    }
+   // @GetMapping("/{id}")
+    //public Optional<Product> findById(@PathVariable Long id) {
+      //  return productService.findById(id);
+   // }
 }
 
